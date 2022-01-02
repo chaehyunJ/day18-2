@@ -1,0 +1,42 @@
+@charset "utf-8";
+
+#textarea {
+	box-sizing: border-box;
+	width: 400px;
+	height: 75vh; /* 브라우저 높이 기준 상대적인 비율 */
+	padding: 10px;
+	border: 2px solid black;
+	overflow-y: auto; /* 내용이 길면 스크롤바가 생기고 평소에는 없다 */
+	background-color: #dadada;
+	margin-bottom: 10px;
+}
+
+.name{
+	font-weight: bold;
+}
+
+.message{
+	border-radius: 5px;
+	padding : 10px;
+	margin-top : 5px;
+	box-shadow: 1px 1px 1px darkgrey;
+	cursor : pointer;
+}
+
+.self, .other, .alarm{
+	padding : 5px;
+	font-size : 15px;
+	display: flex;
+	flex-flow: column;
+}
+
+.self{
+	justify-content: flex-end;
+	align-items: flex-end;
+	margin : auto;
+	margin-right : 0;
+}
+.other{
+	justify-content: flex-start;
+	align-items: flex-start;
+}
