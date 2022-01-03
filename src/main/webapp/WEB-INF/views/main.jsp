@@ -26,16 +26,20 @@
 <div class="bottom">
 	<input id="send" name="send" autofocus>
 	<input id="btn" type="button" value="전송">
-	<a href="${ cpath }/logout"><input type="button" value="나가기"></a>
+	<input id="quit" type="button" value="나가기">
 </div>
 
 <script>
 	const cpath = '${ cpath }'
 	const username = '${ username }'
+	const quit = document.getElementById('quit')
 	const btn = document.getElementById('btn')
 	const send = document.querySelector('input[name="send"]')
 	const textarea = document.getElementById('textarea')
 	
+	// 메시지 하나하나가 json객체 입니다
+	
+	console.log(quit)
 	console.log(btn)
 	console.log(send)
 	console.log(textarea)
@@ -43,12 +47,15 @@
 	const ws = new SockJS(cpath + '/chat')
 	
 	ws.onmessage = onMessage
-	ws.onopen = onOpen				// 웹 소켓이 열리면 입장 메시지를 출력하기
-	ws.onclose = function(msg){}	//
-	ws.onerror = function(msg){}	// 
+	ws.onopen = onOpen					// 웹 소켓이 열리면 입장 메시지를 출력하기
+	ws.onclose = onClose				// 웹 소켓이 닫히면 실행되는데 닫히는게 없어서 실행되지 않는다
+	ws.onerror = function(msg){}		
 	
-	btn.onclick = sendHandler		// 버튼 클릭이하면 보내는 함수
-	send.onkeydown = keyHandler		// 키 입력하면 조건에 따라 보내느 함수로 연결
+	btn.onclick = sendHandler			// 버튼 클릭이하면 보내는 함수
+	send.onkeydown = keyHandler			// 키 입력하면 조건에 따라 보내는 함수로 연결
+	
+	quit.onclick = quitHandler			// 나가기 버튼 누르면 웹 소켓 닫고 로그아웃하는 함수
+
 </script>
 </body>
 </html>

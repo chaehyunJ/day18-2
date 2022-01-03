@@ -22,6 +22,8 @@ public class ChatComponent extends TextWebSocketHandler {
 	// JSON 형태의 문자열을 만들어서 전달
 	private List<WebSocketSession> sessionList = new ArrayList<WebSocketSession>();
 	
+	
+	
 	@Override	// 연결이 성립되면(접속이 유지되면) 호출되는 함수
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
 		System.out.println("TextWebSocketHandler 연결 생성");
@@ -47,6 +49,8 @@ public class ChatComponent extends TextWebSocketHandler {
 	
 	@Override		// 연결이 종료되면 수행되는 메서드 -> 나가면 해당 세션을 날려준다
 	public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
+		System.out.println("세션 해제");
+		
 		sessionList.remove(session);
 	}
 }

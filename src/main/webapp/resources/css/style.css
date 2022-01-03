@@ -40,3 +40,20 @@
 	justify-content: flex-start;
 	align-items: flex-start;
 }
+
+.alarm {
+	flex-flow: row;
+	justify-content: center;
+}
+.alarm > .name{
+	display: none;
+}
+
+.alarm > .message{
+	border: 0;
+	box-shadow: 0;
+	justify-content: center;
+	font-weight: bold;
+	text-align: center;
+	background-color: rgba(0,0,0, 0.1);
+}

@@ -34,17 +34,39 @@ function onMessage(event){		// 메시지를 받으면 수행하는 함수
 
 
 function onOpen(){
-//	const payload = {
-//			username : 'alarm',
-//			message : username + '님이 입장하셨습니다'
-//	}
-	const div = document.createElement('div')
-	div.innerText = username + '님이 입장하셨습니다'
-	textarea.appendChild(div)
+	const payload = {
+			username : 'alarm',
+			message : username + '님이 입장하셨습니다'
+	}
+//	const div = document.createElement('div')
+//	div.innerText = username + '님이 입장하셨습니다'
+//	textarea.appendChild(div)
+	
+	// payload를 stringify해서 JSON형식의 문자열로 send한다
+	ws.send(JSON.stringify(payload))
 }
 
-function onclose(){
+function onClose(event){
+//	const payload = {
+//			username : 'alarm',
+//			message : username + '님이 나가셨습니다'
+//	}
+//	ws.send(JSON.stringify(payload))
+
+	// 미리 메시지를 보내고 로그아웃을 하게 만든다
+	// 나가기 전에 미리 메시지를 보내는 것이다
+}
+
+function quitHandler(event){
+	const payload = {
+			username : 'alarm',
+			message : username + '님이 나가셨습니다'
+	}
+	ws.send(JSON.stringify(payload))
 	
+	ws.close()		// 나가기 버튼 클릭하면 웹소켓을 닫도록 함수를 호출한다
+	
+	location.href = cpath + '/logout'
 }
 
 function keyHandler(event){
